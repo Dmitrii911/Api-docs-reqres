@@ -1,5 +1,5 @@
+package tests;
 
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -7,7 +7,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class ReqresTests extends TestBase {
-    // static public int userID = 2;
 
     @Test
     void testErrorLogin() {
