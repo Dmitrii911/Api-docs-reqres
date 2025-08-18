@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
 
-    protected static String apiKey = System.getProperty("API_KEY", "reqres-free-v1");
+    public static String apiKey = System.getProperty("API_KEY", "reqres-free-v1");
 
 
     protected RequestSpecification requestSpec;
