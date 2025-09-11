@@ -19,14 +19,12 @@ public class LoginExtendedTest extends TestBase {
         authData.setPassword(getValidPassword());
 
         LoginResponseModel response = step("Запрос", () ->
-                given(loginRequestSpec)
+                given(baseRequestSpec)
                         .body(authData)
-
                         .when()
                         .post("/login")
-
                         .then()
-                        .spec(loginResponseSpec)
+                        .spec(responseSpec(200))
                         .extract().as(LoginResponseModel.class));
         step("Проверка ответа", () ->
                 assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
@@ -38,14 +36,12 @@ public class LoginExtendedTest extends TestBase {
         authData.setEmail(getValidEmail());
 
         MissingPasswordModel response = step("Запрос", () ->
-                given(loginRequestSpec)
+                given(baseRequestSpec)
                         .body(authData)
-
                         .when()
                         .post("/login")
-
                         .then()
-                        .spec(missingPasswordResponseSpec)
+                        .spec(responseSpec(400))
                         .extract().as(MissingPasswordModel.class));
         step("Проверка ответа", () ->
                 assertEquals("Missing password", response.getError()));
@@ -54,17 +50,13 @@ public class LoginExtendedTest extends TestBase {
     @Test
     public void deleteUserSuccessfullyTest2() {
 
-        ValidatableResponse response = step("Удаляем пользователя", () -> {
-            return given(requestSpec)
-                    .spec(deleteUserSuccessfullyRequestSpec)
-                    .when()
-                    .delete("/users/{id}")
-                    .then()
-                    .spec(deleteUserSuccessfullyResponseSpec);
-        });
+        ValidatableResponse response = step("Удаляем пользователя", () ->
+                given(baseRequestSpec)
+                       // .spec(baseRequestSpec)
+                        .when()
+                        .delete("/users/{id}")
+                        .then()
+                        .spec(responseSpec(204)));
 
-        step("Проверка статуса ответа", () -> {
-            response.statusCode(204);
-        });
     }
 }

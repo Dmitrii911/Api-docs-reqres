@@ -5,35 +5,31 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static specs.LoginSpec.*;
 
 public class ReqresTests extends TestBase {
 
     @Test
     void testErrorLogin() {
         String authData = "{\\\"email\\\": \\\"login@reqres.in\\\", \\\"password\\\": \\\"pass123\\\"}";
-        given()
+        given(baseRequestSpec)
                 .body(authData)
-                .contentType("application/json")
-                .log().uri()
                 .when()
                 .post("/login")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
+                .spec(responseSpec(400))
                 .body("error", notNullValue());
     }
 
     @Test
     void testGetSingleUserSuccess() {
+        Integer userID = 2;
         given(requestSpec)
                 .log().uri()
                 .when()
                 .get("/users/{id}")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(responseSpec(200))
                 .body("data.id", equalTo(userID));
     }
 
@@ -45,8 +41,7 @@ public class ReqresTests extends TestBase {
                 .when()
                 .get("/users")
                 .then()
-                .log().status()
-                .statusCode(200);
+                .spec(responseSpec(200));
     }
 
     @Test
@@ -57,8 +52,7 @@ public class ReqresTests extends TestBase {
                 .when()
                 .delete("/users/{id}")
                 .then()
-                .log().status()
-                .assertThat().statusCode(204);
+                .spec(responseSpec(204));
     }
 
     @Test
@@ -69,8 +63,7 @@ public class ReqresTests extends TestBase {
                 .when()
                 .delete("/users/{id}")
                 .then()
-                .log().status()
-                .assertThat().statusCode(403);
+                .spec(responseSpec(403));
     }
 
     @Test
@@ -81,8 +74,7 @@ public class ReqresTests extends TestBase {
                 .when()
                 .put("/users/{id}")
                 .then()
-                .log().status()
-                .statusCode(200);
+                .spec(responseSpec(200));
     }
 }
 
