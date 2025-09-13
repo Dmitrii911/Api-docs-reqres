@@ -6,6 +6,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static specs.LoginSpec.*;
+import static specs.UserSpec.userIdRequestSpec;
 
 public class ReqresTests extends TestBase {
 
@@ -24,7 +25,7 @@ public class ReqresTests extends TestBase {
     @Test
     void testGetSingleUserSuccess() {
         Integer userID = 2;
-        given(requestSpec)
+        given(userIdRequestSpec)
                 .log().uri()
                 .when()
                 .get("/users/{id}")
@@ -46,8 +47,7 @@ public class ReqresTests extends TestBase {
 
     @Test
     public void testDeleteUserSuccessfully() {
-        given(requestSpec)
-                .header("x-api-key", apiKey)
+        given(userIdRequestSpec)
                 .log().uri()
                 .when()
                 .delete("/users/{id}")
@@ -57,7 +57,7 @@ public class ReqresTests extends TestBase {
 
     @Test
     public void testDeleteUserFailsWithForbiddenAccess() {
-        given(requestSpec)
+        given(userIdRequestSpec)
                 .header("x-api-key", apiKey + 2)
                 .log().uri()
                 .when()
@@ -68,7 +68,7 @@ public class ReqresTests extends TestBase {
 
     @Test
     public void testUpdateUserWithPutRequest() {
-        given(requestSpec)
+        given(userIdRequestSpec)
                 .header("x-api-key", apiKey)
                 .log().uri()
                 .when()

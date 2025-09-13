@@ -15,8 +15,8 @@ public class LoginExtendedTest extends TestBase {
     @Test
     void successfulLoginTest() {
         LoginBodyModel authData = new LoginBodyModel();
-        authData.setEmail(getValidEmail());
-        authData.setPassword(getValidPassword());
+        authData.setEmail(TestData.validEmail);
+        authData.setPassword(TestData.validPassword);
 
         LoginResponseModel response = step("Запрос", () ->
                 given(baseRequestSpec)
@@ -33,7 +33,7 @@ public class LoginExtendedTest extends TestBase {
     @Test
     void missingPasswordTest() {
         LoginBodyModel authData = new LoginBodyModel();
-        authData.setEmail(getValidEmail());
+        authData.setEmail(TestData.validEmail);
 
         MissingPasswordModel response = step("Запрос", () ->
                 given(baseRequestSpec)
