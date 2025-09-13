@@ -1,5 +1,6 @@
 package tests;
 
+import models.LoginBodyModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -12,9 +13,9 @@ public class ReqresTests extends TestBase {
 
     @Test
     void testErrorLogin() {
-        String authData = "{\\\"email\\\": \\\"login@reqres.in\\\", \\\"password\\\": \\\"pass123\\\"}";
+        LoginBodyModel loginBodyModel = new LoginBodyModel("login@reqres.in", "pass123");
         given(baseRequestSpec)
-                .body(authData)
+                .body(loginBodyModel)
                 .when()
                 .post("/login")
                 .then()

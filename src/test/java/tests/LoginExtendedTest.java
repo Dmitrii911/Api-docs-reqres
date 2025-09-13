@@ -10,6 +10,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specs.LoginSpec.*;
+import static specs.UserSpec.userIdRequestSpec;
 
 public class LoginExtendedTest extends TestBase {
     @Test
@@ -50,13 +51,13 @@ public class LoginExtendedTest extends TestBase {
     @Test
     public void deleteUserSuccessfullyTest2() {
 
-        ValidatableResponse response = step("Удаляем пользователя", () ->
-                given(baseRequestSpec)
-                       // .spec(baseRequestSpec)
-                        .when()
-                        .delete("/users/{id}")
-                        .then()
-                        .spec(responseSpec(204)));
-
+        ValidatableResponse response = step("Удаляем пользователя", () -> {
+            return given(userIdRequestSpec)
+                    .spec(baseRequestSpec)
+                    .when()
+                    .delete("/users/{id}")
+                    .then()
+                    .spec(responseSpec(204));
+        });
     }
 }
