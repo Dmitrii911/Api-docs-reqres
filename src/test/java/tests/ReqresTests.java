@@ -1,6 +1,7 @@
 package tests;
 
 import models.LoginBodyModel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -12,6 +13,7 @@ import static specs.UserSpec.userIdRequestSpec;
 public class ReqresTests extends TestBase {
 
     @Test
+    @DisplayName("Тест с неправильным логином")
     void testErrorLogin() {
         LoginBodyModel loginBodyModel = new LoginBodyModel("login@reqres.in", "pass123");
         given(baseRequestSpec)
@@ -24,6 +26,7 @@ public class ReqresTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Успешное получение данных пользователя")
     void testGetSingleUserSuccess() {
         Integer userID = 2;
         given(userIdRequestSpec)
@@ -36,6 +39,7 @@ public class ReqresTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Успешное получение списка пользователей")
     void testGetUsersSuccess() {
         given()
                 .header("x-api-key", apiKey)
@@ -47,6 +51,7 @@ public class ReqresTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Успешное удаление пользователя")
     public void testDeleteUserSuccessfully() {
         given(userIdRequestSpec)
                 .log().uri()
@@ -57,6 +62,7 @@ public class ReqresTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Неудачное удаление пользователя из-за отсутствия прав")
     public void testDeleteUserFailsWithForbiddenAccess() {
         given(userIdRequestSpec)
                 .header("x-api-key", apiKey + 2)
@@ -68,6 +74,7 @@ public class ReqresTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Успешное обновление данных пользователя")
     public void testUpdateUserWithPutRequest() {
         given(userIdRequestSpec)
                 .header("x-api-key", apiKey)
