@@ -4,6 +4,7 @@ import io.restassured.response.ValidatableResponse;
 import models.LoginBodyModel;
 import models.LoginResponseModel;
 import models.MissingPasswordModel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -14,6 +15,7 @@ import static specs.UserSpec.userIdRequestSpec;
 
 public class LoginExtendedTest extends TestBase {
     @Test
+    @DisplayName("Успешная авторизация")
     void successfulLoginTest() {
         LoginBodyModel authData = new LoginBodyModel();
         authData.setEmail(TestData.validEmail);
@@ -32,6 +34,7 @@ public class LoginExtendedTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Тест c пропущенным паролем")
     void missingPasswordTest() {
         LoginBodyModel authData = new LoginBodyModel();
         authData.setEmail(TestData.validEmail);
@@ -49,7 +52,8 @@ public class LoginExtendedTest extends TestBase {
     }
 
     @Test
-    public void deleteUserSuccessfullyTest2() {
+    @DisplayName("Успешное удаление пользователя")
+    void deleteUserSuccessfullyTest() {
 
         ValidatableResponse response = step("Удаляем пользователя", () -> {
             return given(userIdRequestSpec)
