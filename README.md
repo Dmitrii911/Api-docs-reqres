@@ -87,7 +87,7 @@ gradle clean test
 </p>
 
 <a id="allure-testops"></a>
-## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/1933/dashboards)
+## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4945/dashboards)
 
 ### Основное окно
 
@@ -95,14 +95,14 @@ gradle clean test
 <img title="Allure TestOps" src="media/screenshots/Dashboard_TO.png">
 </p>
 
-### Дерево тестов с разделением по фичам
+### Дерево тестов
 
 <p align="center">
 <img title="Allure TestOps" src="media/screenshots/TreeByFeatures_TO.png">
 </p>
 
 <a id="jira"></a>
-## <img src="media/logo/Jira.svg" width="25" height="25"/></a> Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-553)
+## <img src="media/logo/Jira.svg" width="25" height="25"/></a> Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-1509)
 
 <p align="center">
 <img title="Jira" src="media/screenshots/JiraAPI.png">
