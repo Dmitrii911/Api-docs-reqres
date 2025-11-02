@@ -68,23 +68,6 @@ gradle clean test
 <img title="telegram bot" src="media/screenshots/TelegramBotAPI.png">
 </p>
 
-<a id="allure"></a>
-## <img src="media/logo/Allure.svg" width="25" height="25"/></a> [Allure Report](https://jenkins.autotests.cloud/job/AD_demo_api_reqres/5/allure/) отчеты
-
-### Основное окно
-
-<p align="center">
-<img title="Allure Dashboard" src="media/screenshots/AllureDashboard.png">
-</p>
-
-### Отчеты по тестам
-
-<p align="center">
-
-> В отчете по тестам присутствует развернутая информация по запросам и ответам.
-
-<img title="Allure Tests" src="media/screenshots/AllureWithInfo.png">
-</p>
 
 <a id="allure-testops"></a>
 ## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4945/dashboards)
