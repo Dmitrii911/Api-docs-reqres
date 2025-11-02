@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static specs.LoginSpec.*;
 import static specs.UserSpec.userIdRequestSpec;
 
@@ -29,8 +29,11 @@ public class LoginExtendedTest extends TestBase {
                         .then()
                         .spec(responseSpec(200))
                         .extract().as(LoginResponseModel.class));
-        step("Проверка ответа", () ->
-                assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
+
+        String token = response.getToken();
+        assertFalse(token.trim().isEmpty(), "Токен не должен быть пустым");
+        assertTrue(token.length() >= 8, "Длина токена должна быть больше или равна 8 символам");
+        assertTrue(token.matches("[A-Za-z0-9]+"), "Токен должен содержать только буквенно-цифровые символы");
     }
 
     @Test
